@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/chilidog-xiv/static/css/main.31d6cfe0.css",
+    "main.js": "/chilidog-xiv/static/js/main.dda4f9dc.js",
+    "index.html": "/chilidog-xiv/index.html",
+    "main.dda4f9dc.js.map": "/chilidog-xiv/static/js/main.dda4f9dc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.dda4f9dc.js"
+  ]
+}
