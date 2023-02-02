@@ -52,7 +52,7 @@ class CharaBox extends React.Component {
           <img src={this.state.portraitUrl} alt=""/>
         </div>
       </div>
-       
+      
     );
   }
 }
