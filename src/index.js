@@ -6,7 +6,6 @@ import './index.css';
 // todo be able to search -> make this a function
 //const charName = "Chili Dog"
 //const server = "sephirot"
-//const urlstring = "https://xivapi.com/character/search?name=" + charName + "&server=" + server;
 
 async function fetchIDfromSearch(charName, server) {
   const urlString = "https://xivapi.com/character/search?name=" + charName + "&server=" + server;
@@ -112,3 +111,17 @@ class CharBox extends React.Component {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<CharBox />)
+
+//something like
+/*
+app
+  header
+  if !charbox
+    logo
+    searchbox
+  if charbox 
+    charbox (with info from searchbox)
+  if !charbox and search done
+    loading gif
+  footer
+*/
