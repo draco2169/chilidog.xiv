@@ -41,7 +41,7 @@ class CharBox extends React.Component {
   render() {
     // uses data and adds it to state (does this once only)
     if (!this.state.portraitUrl) {
-      fetchDataFromID(fetchIDfromSearch("Tsakha Malqir", "sephirot")).then(data => this.setState({
+      fetchDataFromID(fetchIDfromSearch("Chili Dog", "sephirot")).then(data => this.setState({
         activeJob: data.ActiveClassJob.UnlockedState,
         activeJobLevel: data.ActiveClassJob.Level,
         portraitUrl: data.Portrait, 
