@@ -9,7 +9,7 @@ import './index.css';
 
 async function fetchIDfromSearch(charName, server) {
   console.log(charName);
-  const urlString = "https://xivapi.com/character/search?name=" + charName + "&server=" + server;
+  const urlString = "https://xivapi.com/character/search?name=" + charName + "&server=" + server + "?private_key=9fccd0a66cec4b9a90a4949f3ef8f63313ad91ff04de424987736c8145a4c466";
   let response = await fetch(urlString, { mode: 'cors' });
   let data = await response.json();
   return data.Results[0].ID;
@@ -17,7 +17,7 @@ async function fetchIDfromSearch(charName, server) {
 
 async function fetchDataFromID(ID) {
   ID = await ID;
-  const urlString = "https://xivapi.com/character/" + ID;
+  const urlString = "https://xivapi.com/character/" + ID + "?private_key=9fccd0a66cec4b9a90a4949f3ef8f63313ad91ff04de424987736c8145a4c466";
   let response = await fetch(urlString, { mode: 'cors' });
   let data = await response.json();
 
