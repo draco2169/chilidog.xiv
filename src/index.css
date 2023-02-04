@@ -13,19 +13,23 @@
     width: 30vw;
     display: inline;
     margin-left: 10vw;
-    height: 100vh;
 }
+
 .portraitInner {
     width: 200px;
     margin: auto;
     
 }
 
+body,html {
+    height: 100%;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     color: white;
-    background-color: #000000;
-    background-image: linear-gradient(to bottom right, rgba(255,0,0,0), rgb(13, 42, 102));
+    background-color: #000000;;
+    background-image: linear-gradient(to top left, rgba(255,0,0,0), rgb(13, 42, 102)), url("/public/stars.jpg");
     background-size: cover;
 }
 

@@ -8,6 +8,7 @@ import './index.css';
 //const server = "sephirot"
 
 async function fetchIDfromSearch(charName, server) {
+  console.log(charName);
   const urlString = "https://xivapi.com/character/search?name=" + charName + "&server=" + server;
   let response = await fetch(urlString, { mode: 'cors' });
   let data = await response.json();
@@ -33,27 +34,35 @@ class CharBox extends React.Component {
     // will store data for chara jobs and portrait url
     // initialised as array with level all 0, null url
     this.state = {
-      charName: null,
+      toggle: 1,
+      charName: "Chili Dog",
       activeJob: {ID: 1, Name: ""},
       activeJobLevel: 0,
       jobs: Array(31).fill({Level: 0, UnlockedState: {ID: 0, Name:null}}),
       portraitUrl: null,
     };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  // only for test
+  handleChange() {
+    const chars = ["Chili Dog", "Tsakha Malqir", "Baiyu Aorun", "Koharu Yuzuka"]
+    this.setState({charName: chars[this.state.toggle % 4]})
+    this.setState(prevState => ({portraitUrl: null, toggle: prevState.toggle + 1}));
   }
 
   render() {
     // uses data and adds it to state (does this once only)
     if (!this.state.portraitUrl) {
-      fetchDataFromID(fetchIDfromSearch("Chili Dog", "sephirot")).then(data => this.setState({
-        charName: data.Name,
+      fetchDataFromID(fetchIDfromSearch(this.state.charName, "sephirot")).then(data => this.setState({
         activeJob: data.ActiveClassJob.UnlockedState,
         activeJobLevel: data.ActiveClassJob.Level,
-        portraitUrl: data.Portrait, 
+        portraitUrl: data.Portrait.split("?")[0], 
         jobs: data.ClassJobs
       }));
     }
 
-    
     return (
       <div className='display'>
         <div className = 'portrait'>
@@ -115,6 +124,8 @@ class CharBox extends React.Component {
             </div>
           </div>       
         </div>
+        {/*only for test*/}
+        <button onClick={this.handleChange}> Press Me! </button>
         <div className = 'footer'>
           @github.com/draco2169/chilidog.xiv
         </div>
