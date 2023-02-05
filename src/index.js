@@ -35,19 +35,25 @@ class CharBox extends React.Component {
     // initialised as array with level all 0, null url
     this.state = {
       formName: "Chili Dog",
-      charName: '',
+      server: "Sephirot",
+      charName: "",
       activeJob: {ID: 1, Name: ""},
       activeJobLevel: 0,
       jobs: Array(31).fill({Level: 0, UnlockedState: {ID: 0, Name:null}}),
       portraitUrl: null,
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleServerChange = this.handleServerChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleInputChange(event) {
     this.setState({formName: event.target.value})
+  }
+
+  handleServerChange(event) {
+    this.setState({server: event.target.value})
   }
 
   handleSubmit(event) {
@@ -58,10 +64,10 @@ class CharBox extends React.Component {
   render() {
     // uses data and adds it to state (does this once only)
     if (!this.state.portraitUrl) {
-      fetchDataFromID(fetchIDfromSearch(this.state.formName, "sephirot")).then(data => this.setState({
+      fetchDataFromID(fetchIDfromSearch(this.state.formName, this.state.server)).then(data => this.setState({
         activeJob: data.ActiveClassJob.UnlockedState,
         activeJobLevel: data.ActiveClassJob.Level,
-        portraitUrl: data.Portrait.split("?")[0], 
+        portraitUrl: data.Portrait, 
         jobs: data.ClassJobs,
         charName: data.Name
       }));
@@ -81,7 +87,18 @@ class CharBox extends React.Component {
             <form onSubmit = {this.handleSubmit}>
               <label>
                 Name:
-                <input type = 'text' value = {this.state.formName} onChange = {this.handleChange} />
+                <input type = 'text' value = {this.state.formName} onChange = {this.handleInputChange} />
+              </label>
+              <br />
+              <label>
+                Server:
+                <select value = {this.state.server} onChange = {this.handleServerChange}>
+                  <option value = "Bismarck">Bismarck</option>
+                  <option value = "Ravana">Ravana</option>
+                  <option value = "Sephirot">Sephirot</option>
+                  <option value = "Sophia">Sophia</option>
+                  <option value = "Zurvan">Zurvan</option>
+                </select>
               </label>
               <input type = 'submit' value = 'Search!' />
             </form>
