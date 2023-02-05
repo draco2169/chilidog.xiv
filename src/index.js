@@ -34,8 +34,8 @@ class CharBox extends React.Component {
     // will store data for chara jobs and portrait url
     // initialised as array with level all 0, null url
     this.state = {
-      toggle: 1,
-      charName: "Chili Dog",
+      formName: "Chili Dog",
+      charName: '',
       activeJob: {ID: 1, Name: ""},
       activeJobLevel: 0,
       jobs: Array(31).fill({Level: 0, UnlockedState: {ID: 0, Name:null}}),
@@ -43,23 +43,27 @@ class CharBox extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // only for test
-  handleChange() {
-    const chars = ["Chili Dog", "Tsakha Malqir", "Baiyu Aorun", "Koharu Yuzuka"]
-    this.setState({charName: chars[this.state.toggle % 4]})
-    this.setState(prevState => ({portraitUrl: null, toggle: prevState.toggle + 1}));
+  handleChange(event) {
+    this.setState({formName: event.target.value})
+  }
+
+  handleSubmit(event) {
+    this.setState({portraitUrl: null})
+    event.preventDefault();
   }
 
   render() {
     // uses data and adds it to state (does this once only)
     if (!this.state.portraitUrl) {
-      fetchDataFromID(fetchIDfromSearch(this.state.charName, "sephirot")).then(data => this.setState({
+      fetchDataFromID(fetchIDfromSearch(this.state.formName, "sephirot")).then(data => this.setState({
         activeJob: data.ActiveClassJob.UnlockedState,
         activeJobLevel: data.ActiveClassJob.Level,
         portraitUrl: data.Portrait.split("?")[0], 
-        jobs: data.ClassJobs
+        jobs: data.ClassJobs,
+        charName: data.Name
       }));
     }
 
@@ -69,7 +73,18 @@ class CharBox extends React.Component {
           <div className = 'portraitInner'>
             <h1>{this.state.charName}</h1>
             <p> {this.state.activeJob.Name} {this.state.activeJobLevel}</p>
-            <img src={this.state.portraitUrl} alt="Character Portrait" width={"350"}/>
+            <div className = 'char'>
+              <img src={this.state.portraitUrl} alt="Character Portrait" width={"350"}/>
+            </div>
+          </div>
+          <div className = 'form'>
+            <form onSubmit = {this.handleSubmit}>
+              <label>
+                Name:
+                <input type = 'text' value = {this.state.formName} onChange = {this.handleChange} />
+              </label>
+              <input type = 'submit' value = 'Search!' />
+            </form>
           </div>
         </div>
         <div className = 'jobList'>
@@ -124,8 +139,6 @@ class CharBox extends React.Component {
             </div>
           </div>       
         </div>
-        {/*only for test*/}
-        <button onClick={this.handleChange}> Press Me! </button>
         <div className = 'footer'>
           @github.com/draco2169/chilidog.xiv
         </div>
