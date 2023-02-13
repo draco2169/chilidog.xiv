@@ -62,3 +62,7 @@ body {
     text-align: center;
   }
 
+/*for the footer link*/
+a {
+    color: white;
+}

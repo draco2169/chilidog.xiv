@@ -157,7 +157,7 @@ class CharBox extends React.Component {
           </div>       
         </div>
         <div className = 'footer'>
-          @github.com/draco2169/chilidog.xiv
+          <a href = "https://github.com/draco2169/chilidog.xiv" title = "Github Link" target = "_blank">@github.com/draco2169/chilidog.xiv</a>
         </div>
       </div>
     );
