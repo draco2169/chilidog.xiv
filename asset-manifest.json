@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/chilidog.xiv/static/css/main.873ac904.css",
-    "main.js": "/chilidog.xiv/static/js/main.9aabad9d.js",
+    "main.css": "/chilidog.xiv/static/css/main.6a83b456.css",
+    "main.js": "/chilidog.xiv/static/js/main.352df2fb.js",
     "static/media/stars.jpg": "/chilidog.xiv/static/media/stars.59925da7807c6310c092.jpg",
     "index.html": "/chilidog.xiv/index.html",
-    "main.873ac904.css.map": "/chilidog.xiv/static/css/main.873ac904.css.map",
-    "main.9aabad9d.js.map": "/chilidog.xiv/static/js/main.9aabad9d.js.map"
+    "main.6a83b456.css.map": "/chilidog.xiv/static/css/main.6a83b456.css.map",
+    "main.352df2fb.js.map": "/chilidog.xiv/static/js/main.352df2fb.js.map"
   },
   "entrypoints": [
-    "static/css/main.873ac904.css",
-    "static/js/main.9aabad9d.js"
+    "static/css/main.6a83b456.css",
+    "static/js/main.352df2fb.js"
   ]
 }
